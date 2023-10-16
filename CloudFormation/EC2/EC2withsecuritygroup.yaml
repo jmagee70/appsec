@@ -45,6 +45,9 @@ Resources:
       SecurityGroups: [!Ref 'InstanceSecurityGroup']
       KeyName: !Ref 'KeyName'
       ImageId: !Ref 'LatestAmiId'
+      Tags:
+        - Key: yor_trace
+          Value: 3592612b-dc99-46d2-a17a-3f03e71162ba
   InstanceSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
@@ -54,6 +57,9 @@ Resources:
         FromPort: 22
         ToPort: 22
         CidrIp: !Ref 'SSHLocation'
+      Tags:
+        - Key: yor_trace
+          Value: 363e4028-7b57-4413-80b3-b493cde4f357
 Outputs:
   InstanceId:
     Description: InstanceId of the newly created EC2 instance

@@ -3,6 +3,9 @@ resource "azurerm_virtual_network" "example" {
   address_space       = ["10.0.0.0/16"]
   location            = azurerm_resource_group.example.location
   resource_group_name = azurerm_resource_group.example.name
+  tags = {
+    yor_trace = "15401726-12e8-4be3-a8fb-46da56928d3e"
+  }
 }
 
 resource "azurerm_subnet" "example" {
@@ -22,6 +25,9 @@ resource "azurerm_network_interface" "ni_linux" {
     subnet_id                     = azurerm_subnet.example.id
     private_ip_address_allocation = "Dynamic"
   }
+  tags = {
+    yor_trace = "a22143c2-2e71-4657-a29a-7bfe5219d337"
+  }
 }
 
 resource "azurerm_network_interface" "ni_win" {
@@ -33,6 +39,9 @@ resource "azurerm_network_interface" "ni_win" {
     name                          = "internal"
     subnet_id                     = azurerm_subnet.example.id
     private_ip_address_allocation = "Dynamic"
+  }
+  tags = {
+    yor_trace = "c3169558-f5b0-4196-8dc1-81a9d1139ce6"
   }
 }
 
@@ -64,12 +73,18 @@ resource azurerm_network_security_group "bad_sg" {
     destination_port_range     = "3389-3389"
     destination_address_prefix = "*"
   }
+  tags = {
+    yor_trace = "285f8010-4425-4e33-a323-2ded64a068b5"
+  }
 }
 
 resource azurerm_network_watcher "network_watcher" {
   location            = var.location
   name                = "casdemo-network-watcher-${var.environment}"
   resource_group_name = azurerm_resource_group.example.name
+  tags = {
+    yor_trace = "e357daa3-6473-48d5-901b-08be1f45efc0"
+  }
 }
 
 resource azurerm_network_watcher_flow_log "flow_log" {
@@ -81,5 +96,8 @@ resource azurerm_network_watcher_flow_log "flow_log" {
   retention_policy {
     enabled = false
     days    = 10
+  }
+  tags = {
+    yor_trace = "bafda0e8-15d0-4388-85f9-6034510ebcce"
   }
 }

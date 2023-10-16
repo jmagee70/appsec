@@ -21,8 +21,14 @@ resource google_compute_instance "server" {
     enable-oslogin         = false
     serial-port-enable     = true
   }
+  labels = {
+    yor_trace = "a969f012-c2d9-41a7-9e6a-ab5b3724570e"
+  }
 }
 
 resource google_compute_disk "unencrypted_disk" {
   name = "casdemo-${var.environment}-disk"
+  labels = {
+    yor_trace = "10ba8a24-d5f0-46ce-805c-c5ca66108ad8"
+  }
 }
